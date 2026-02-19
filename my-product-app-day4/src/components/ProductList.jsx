@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import useProductSearch from "./SearchBar";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 function ProductList({ onViewDetails, onAddToWishList, onRemove, wishList }) {
     const [products, setProducts] = useState([]);
@@ -9,6 +10,14 @@ function ProductList({ onViewDetails, onAddToWishList, onRemove, wishList }) {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const { query, handleSearch, filteredProducts, isSearching } = useProductSearch(products);
+    const [width, height] = useWindowSize();
+
+    const gridColumns = () => {
+        if (width < 480) return '1fr'; //mobile
+        if (width < 768) return 'repeat(2, 1fr)'; //tablet
+        if (width < 1024) return 'repeat(3, 1fr)'; //small laptop
+        return 'repeat(auto-fill, minmax(220px, 1fr))'; //desktop
+    }
 
     //fetch categories
     useEffect(() => {
@@ -106,7 +115,7 @@ function ProductList({ onViewDetails, onAddToWishList, onRemove, wishList }) {
             </div>
 
             {/* product grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: gridColumns(), gap: '20px' }}>
                 {products.map(product => (
                     <ProductCard key={product.id} product={product} onViewDetails={onViewDetails} onAddToWishList={onAddToWishList} onRemove={onRemove} wishList={wishList}/>
                 ))}
