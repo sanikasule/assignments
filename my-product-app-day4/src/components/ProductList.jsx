@@ -115,11 +115,15 @@ function ProductList({ onViewDetails, onAddToWishList, onRemove, wishList }) {
             </div>
 
             {/* product grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: gridColumns(), gap: '20px' }}>
-                {products.map(product => (
-                    <ProductCard key={product.id} product={product} onViewDetails={onViewDetails} onAddToWishList={onAddToWishList} onRemove={onRemove} wishList={wishList}/>
-                ))}
-            </div>
+            {filteredProducts.length > 0 ? (
+                <div style={{ display: 'grid', gridTemplateColumns: gridColumns(), gap: '20px' }}>
+                    {filteredProducts.map(product => (
+                        <ProductCard key={product.id} product={product} onViewDetails={onViewDetails} onAddToWishList={onAddToWishList}onRemove={onRemove} wishList={wishList}/>
+                    ))}
+                </div>
+            ) : (
+                <h2 style={{textAlign: 'center', color: '#666', marginTop: '20px'}}>No products found</h2>
+            )  }   
         </div>
     )
 }
