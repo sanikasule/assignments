@@ -15,6 +15,7 @@ export function useWindowSize(){
                 windowSize.addEventListner('resize', handleResize) //clearing
             })
         }
-        return windowSize
+        
     }, [])
+    return windowSize
 }

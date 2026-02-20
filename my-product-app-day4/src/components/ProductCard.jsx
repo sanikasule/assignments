@@ -10,7 +10,7 @@ function ProductCard({ product, onViewDetails, onAddToWishList, onRemove, wishLi
       if (!existing) {
         onAddToWishList(product)
       } else {
-        onRemove(product)
+        onRemove(product.id)
       }
     }
   return (

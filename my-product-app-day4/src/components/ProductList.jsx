@@ -10,7 +10,7 @@ function ProductList({ onViewDetails, onAddToWishList, onRemove, wishList }) {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const { query, handleSearch, filteredProducts, isSearching } = useProductSearch(products);
-    const [width, height] = useWindowSize();
+    const {width}= useWindowSize();
 
     const gridColumns = () => {
         if (width < 480) return '1fr'; //mobile
