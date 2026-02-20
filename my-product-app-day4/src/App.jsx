@@ -7,6 +7,7 @@ import ProductDetail from './components/ProductDetail';
 import UserList from './components/UsersList';
 import Cart from './components/Cart'; 
 import WishList from './components/WishList';
+import BackToTop from './components/BackToTop';
 
 function App() { 
   const [currentView, setCurrentView] = useState('products'); 
@@ -35,6 +36,8 @@ function App() {
         {currentView === 'users' && (       
         <UserList onClose={handleBackToProducts}/>
         )}
+        
+        <BackToTop />
     </div> 
     ); 
 } 
