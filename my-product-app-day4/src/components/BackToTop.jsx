@@ -4,6 +4,7 @@ function BackToTop() {
     const scrollPosition = useScrollPosition();
 
     //to scroll up after button clicking
+    //onCLick write function that would happen after clicking button
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
